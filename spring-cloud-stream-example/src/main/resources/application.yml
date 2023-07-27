@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    function:
+      definition: helloConsumer
+    stream:
+      bindings:
+        helloConsumer-in-0:
+          destination: hello
+logging:
+  level:
+    root: info
+    org:
+      springframework: info
+
