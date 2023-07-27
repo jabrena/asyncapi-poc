@@ -1,10 +1,12 @@
 # Async API POC
 
+A POC to review Async API Spec and some tools related.
+
 ## Async API Generator
 
 https://www.asyncapi.com/tools/generator
 
-Templates:
+**Async API Generator Templates:**
 
 ```
 @asyncapi/java-template	Generates Java JMS application	click here
@@ -14,7 +16,10 @@ Templates:
 @asyncapi/markdown-template	Generates documentation in Markdown file
 ```
 
+**How to:**
+
 ```bash
+# Move to a Script executed at codespaces level.
 sudo apt update
 sudo apt install nodejs npm
 nodejs --version
@@ -22,31 +27,14 @@ npm --version
 sudo npm install -g @asyncapi/generator
 
 ag --help
-Usage: ag [options] <asyncapi> <template>
-
-Options:
-  -V, --version                  output the version number
-  -d, --disable-hook [hooks...]  disable a specific hook type or hooks from given hook type
-  --debug                        enable more specific errors in the console
-  -i, --install                  installs the template and its dependencies (defaults to false)
-  -n, --no-overwrite <glob>      glob or path of the file(s) to skip when regenerating
-  -o, --output <outputDir>       directory where to put the generated files (defaults to current directory) (default:
-                                 "/workspaces/asyncapi-poc/springwolf-kafka-example")
-  -p, --param <name=value>       additional param to pass to templates
-  --force-write                  force writing of the generated files to given directory even if it is a git repo with unstaged files or
-                                 not empty dir (defaults to false)
-  --watch-template               watches the template directory and the AsyncAPI document, and re-generate the files when changes occur.
-                                 Ignores the output directory. This flag should be used only for template development.
-  --map-base-url <url:folder>    maps all schema references from base url to local folder
-  -h, --help                     display help for command
-
 sudo ag ./hello-world-asyncapi.yaml @asyncapi/html-template -o html-example
+sudo ag ./hello-world-asyncapi.yaml @asyncapi/markdown-template -o markdown-example
+sudo ag ./hello-world-asyncapi.yaml @asyncapi/java-spring-template -o spring-example
+sudo ag ./hello-world-asyncapi.yaml @asyncapi/java-spring-cloud-stream-template -o spring-cloud-stream-example
 
 sdk install java 20-tem
 sdk use java 20-tem
 jwebserver -p 9000 -d "$(pwd)/html-example/"
-
-# Step 2: Stop the webserver & use the default Java version
 sdk env install
 sdk env
 ```
