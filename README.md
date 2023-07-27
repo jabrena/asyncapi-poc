@@ -56,3 +56,5 @@ sdk env
 - https://www.confluent.io/events/kafka-summit-europe-2021/getting-started-with-asyncapi-how-to-describe-your-kafka-cluster/
 - https://www.asyncapi.com/blog/asyncapi_codegen_scst
 - https://github.com/springwolf/springwolf-core
+- https://microcks.io/blog/async-features-with-docker-compose/
+- https://microcks.io/documentation/using/asyncapi/
