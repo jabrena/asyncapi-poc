@@ -4,6 +4,16 @@
 
 https://www.asyncapi.com/tools/generator
 
+Templates:
+
+```
+@asyncapi/java-template	Generates Java JMS application	click here
+@asyncapi/java-spring-template	Generates Java Spring service	click here
+@asyncapi/java-spring-cloud-stream-template	Generates Java Spring Cloud Stream service	click here
+@asyncapi/html-template	Generates HTML documentation site	click here
+@asyncapi/markdown-template	Generates documentation in Markdown file
+```
+
 ```bash
 sudo apt update
 sudo apt install nodejs npm
@@ -40,13 +50,6 @@ jwebserver -p 9000 -d "$(pwd)/html-example/"
 sdk env install
 sdk env
 ```
-
-
-@asyncapi/java-template	Generates Java JMS application	click here
-@asyncapi/java-spring-template	Generates Java Spring service	click here
-@asyncapi/java-spring-cloud-stream-template	Generates Java Spring Cloud Stream service	click here
-@asyncapi/html-template	Generates HTML documentation site	click here
-@asyncapi/markdown-template	Generates documentation in Markdown file
 
 ## References
 
