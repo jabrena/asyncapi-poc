@@ -35,3 +35,6 @@ Open a new browser tab and point to the `http://localhost:8080` endpoint. This w
 
 You will be redirected to the main dashboard page. You can now start [using Microcks](https://microcks.io/documentation/getting-started/#using-microcks).
 
+---
+
+docker logs microcks

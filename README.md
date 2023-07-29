@@ -31,10 +31,10 @@ npm --version
 sudo npm install -g @asyncapi/generator
 
 ag --help
-sudo ag ./specs/hello-world-asyncapi.yaml @asyncapi/html-template -o html-example
-sudo ag ./specs/hello-world-asyncapi.yaml @asyncapi/markdown-template -o markdown-example
-sudo ag ./specs/hello-world-asyncapi.yaml @asyncapi/java-spring-template -o spring-example
-sudo ag ./specs/hello-world-asyncapi.yaml @asyncapi/java-spring-cloud-stream-template -o spring-cloud-stream-example
+sudo ag ./specs/hello-world-asyncapi.yaml @asyncapi/html-template -o examples/html-example
+sudo ag ./specs/hello-world-asyncapi.yaml @asyncapi/markdown-template -o examples/markdown-example
+sudo ag ./specs/hello-world-asyncapi.yaml @asyncapi/java-spring-template -o examples/spring-example
+sudo ag ./specs/hello-world-asyncapi.yaml @asyncapi/java-spring-cloud-stream-template -o examples/spring-cloud-stream-example
 
 sdk install java 20-tem
 sdk use java 20-tem
