@@ -1,0 +1,183 @@
+asyncapi: 2.6.0
+info:
+  title: API Document for Confluent Cluster
+  version: 1.0.0
+servers:
+  cluster:
+    url: 'https://pkac-xxxxx.<location>.<cloud-type>.confluent.cloud'
+    description: Confluent Kafka instance.
+    protocol: kafka
+    security:
+      - confluentBroker: []
+  schema-registry:
+    url: 'https://psrc-xxxxx.<location>.<cloud-type>.confluent.cloud'
+    description: Confluent Kafka Schema Registry Server
+    protocol: kafka
+    security:
+      - confluentSchemaRegistry: []
+channels:
+  Hoboken-District:
+    subscribe:
+      operationId: HobokenDistrictSubscribe
+      bindings:
+        kafka:
+          bindingVersion: 0.3.0
+          groupId:
+            type: string
+          clientId:
+            type: string
+      message:
+        $ref: '#/components/messages/HobokenDistrictMessage'
+    bindings:
+      kafka:
+        x-partitions: 6
+        x-replicas: 3
+        x-configs:
+          cleanup.policy: delete
+          delete.retention.ms: 86400000
+          confluent.value.schema.validation: 'true'
+    x-messageCompatibility: BACKWARD
+components:
+  messages:
+    HobokenDistrictMessage:
+      schemaFormat: application/schema+json;version=draft-07
+      contentType: application/json
+      payload:
+        $id: 'https://github.com/NABSA/gbfs/blob/v2.3/gbfs.md#station_statusjson'
+        $schema: 'http://json-schema.org/draft-07/schema'
+        description: Describes the capacity and rental availability of the station
+        properties:
+          last_updated:
+            description: Last time the data in the feed was updated in POSIX time.
+            minimum: 1450155600
+            type: integer
+          station:
+            properties:
+              is_installed:
+                description: Is the station currently on the street?
+                type: boolean
+              is_renting:
+                description: Is the station currently renting vehicles?
+                type: boolean
+              is_returning:
+                description: Is the station accepting vehicle returns?
+                type: boolean
+              last_reported:
+                description: >-
+                  The last time this station reported its status to the
+                  operator's backend in POSIX time.
+                minimum: 1450155600
+                type: integer
+              num_bikes_available:
+                description: >-
+                  Number of vehicles of any type physically available for rental
+                  at the station.
+                minimum: 0
+                type: integer
+              num_bikes_disabled:
+                description: Number of disabled vehicles of any type at the station.
+                minimum: 0
+                type: integer
+              num_docks_available:
+                description: Number of functional docks physically at the station.
+                minimum: 0
+                type: integer
+              num_docks_disabled:
+                description: Number of empty but disabled docks at the station.
+                minimum: 0
+                type: integer
+              station_id:
+                description: Identifier of a station.
+                type: string
+              vehicle_docks_available:
+                description: >-
+                  Object displaying available docks by vehicle type (added in
+                  v2.1-RC).
+                items:
+                  properties:
+                    count:
+                      description: >-
+                        A number representing the total number of available
+                        docks for the defined vehicle type (added in v2.1-RC).
+                      minimum: 0
+                      type: integer
+                    vehicle_type_ids:
+                      description: >-
+                        An array of strings where each string represents a
+                        vehicle_type_id that is able to use a particular type of
+                        dock at the station (added in v2.1-RC).
+                      items:
+                        type: string
+                      type: array
+                  required:
+                    - vehicle_type_ids
+                    - count
+                  type: object
+                type: array
+              vehicle_types_available:
+                description: >-
+                  Array of objects displaying the total number of each vehicle
+                  type at the station (added in v2.1-RC).
+                items:
+                  properties:
+                    count:
+                      description: >-
+                        A number representing the total amount of this vehicle
+                        type at the station (added in v2.1-RC).
+                      minimum: 0
+                      type: integer
+                    vehicle_type_id:
+                      description: >-
+                        The vehicle_type_id of vehicle at the station (added in
+                        v2.1-RC).
+                      type: string
+                  required:
+                    - vehicle_type_id
+                    - count
+                  type: object
+                minItems: 1
+                type: array
+            required:
+              - station_id
+              - num_bikes_available
+              - is_installed
+              - is_renting
+              - is_returning
+              - last_reported
+            type: object
+          ttl:
+            description: >-
+              Number of seconds before the data in the feed will be updated
+              again (0 if the data should always be refreshed).
+            minimum: 0
+            type: integer
+          version:
+            const: '2.3'
+            description: >-
+              GBFS version number to which the feed conforms, according to the
+              versioning framework (added in v1.1).
+            type: string
+        required:
+          - last_updated
+          - ttl
+          - version
+          - station
+        type: object
+      name: HobokenDistrictMessage
+      bindings:
+        kafka:
+          bindingVersion: 0.3.0
+          key:
+            type: string
+  securitySchemes:
+    confluentBroker:
+      type: userPassword
+      x-configs:
+        sasl.mechanisms: PLAIN
+        sasl.password: '{{CLUSTER_API_SECRET}}'
+        sasl.username: '{{CLUSTER_API_KEY}}'
+        security.protocol: sasl_ssl
+    confluentSchemaRegistry:
+      type: userPassword
+      x-configs:
+        basic.auth.user.info: '{{SCHEMA_REGISTRY_API_KEY}}:{{SCHEMA_REGISTRY_API_SECRET}}'
