@@ -2,9 +2,20 @@
 
 A POC to review Async API Spec and some tools related.
 
-## Async API Examples
+## Goals
 
-[./specs/](./specs/)
+- [x] Learn to define Async API Specs
+- [x] Learn to generate documentation from Async API Specs
+- [ ] Learn to use Microcks
+- [ ] Learn to use Testcontainers support for Microcks
+- [ ] Learn to use Maven/Gradle plugin for Async API
+- [ ] Learn to use Spectral for Async API
+
+## Async API examples
+
+```bash
+cd specs
+```
 
 ## Microcks
 
