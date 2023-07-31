@@ -39,7 +39,8 @@
 				"redhat.vscode-xml",
 				"redhat.vscode-yaml",
 				"editorconfig.editorconfig",
-				"asyncapi.asyncapi-preview"
+				"asyncapi.asyncapi-preview",
+				"stoplight.spectral"
 			]
 		}
 	}
