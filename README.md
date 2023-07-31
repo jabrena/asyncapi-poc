@@ -7,7 +7,7 @@ A POC to review Async API Spec and some tools related.
 - [x] Learn to define Async API Specs
 - [x] Learn to generate documentation from Async API Specs
 - [x] Learn to use Spectral for Async API
-- [x] Learn to define a Spectral ruleset for Async API Specs
+- [ ] Learn to define a Spectral ruleset for Async API Specs
 - [ ] Learn to use Microcks
 - [ ] Learn to use Testcontainers support for Microcks
 - [ ] Learn to use Maven/Gradle plugin for Async API
