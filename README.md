@@ -6,10 +6,11 @@ A POC to review Async API Spec and some tools related.
 
 - [x] Learn to define Async API Specs
 - [x] Learn to generate documentation from Async API Specs
+- [ ] Learn to use Spectral for Async API
 - [ ] Learn to use Microcks
 - [ ] Learn to use Testcontainers support for Microcks
 - [ ] Learn to use Maven/Gradle plugin for Async API
-- [ ] Learn to use Spectral for Async API
+
 
 ## Async API examples
 
@@ -55,6 +56,7 @@ npm --version
 sudo npm install -g @asyncapi/generator
 
 ag --help
+sudo ag ./specs/complex-asyncapi.yaml @asyncapi/html-template -o ./docs
 sudo ag ./specs/hello-world-asyncapi.yaml @asyncapi/html-template -o examples/html-example
 sudo ag ./specs/hello-world-asyncapi.yaml @asyncapi/markdown-template -o examples/markdown-example
 sudo ag ./specs/hello-world-asyncapi.yaml @asyncapi/java-spring-template -o examples/spring-example
